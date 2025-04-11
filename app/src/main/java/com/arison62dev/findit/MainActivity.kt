@@ -12,6 +12,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.arison62dev.findit.presentation.navigation.FindITNavGraph
+import com.arison62dev.findit.presentation.screen.FindItSplashScreen
 import com.arison62dev.findit.presentation.ui.theme.FindITTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,34 +22,23 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("MainActivity", "onCreate called")
-        Log.d("MainActivity", "SUPABASE_URL: ${BuildConfig.SUPABASE_URL}")
+
         enableEdgeToEdge()
         setContent {
             FindITTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    FindITNavGraph(rememberNavController())
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
 
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
     FindITTheme {
-        Greeting("Android")
+        FindITNavGraph()
     }
 }

@@ -15,8 +15,12 @@ data class UtilisateurDto(
     @SerialName("email")
     val email: String,
     @SerialName("date_inscription")
-    val dateInscription: String = LocalDateTime.now().toString()
+    val dateInscription: String = LocalDateTime.now().toString(),
+
 )
+
+val UtilisateurDto.Companion.tableName: String
+    get() = "utilisateurs"
 
 @Serializable
 data class ProfileUtilisateurDto(
@@ -35,8 +39,11 @@ data class ProfileUtilisateurDto(
     @SerialName("nom_profile")
     val nomProfile: String? = null,
     @SerialName("est_verifie")
-    val estVerifie: Boolean = false
+    val estVerifie: Boolean = false,
 )
+val ProfileUtilisateurDto.Companion.tableName: String
+    get() = "profilesutilisateurs"
+
 
 @Serializable
 data class TransactionTokenDto(
@@ -51,8 +58,11 @@ data class TransactionTokenDto(
     @SerialName("details")
     val details: String? = null,
     @SerialName("date_transaction")
-    val dateTransaction: String = LocalDateTime.now().toString()
+    val dateTransaction: String = LocalDateTime.now().toString(),
+
 )
+val TransactionTokenDto.Companion.tableName: String
+    get() = "transactionstokens"
 
 @Serializable
 data class LocalisationDto(
@@ -61,8 +71,12 @@ data class LocalisationDto(
     @SerialName("latitude")
     val latitude: Double? = null,
     @SerialName("longitude")
-    val longitude: Double? = null
+    val longitude: Double? = null,
 )
+
+val LocalisationDto.Companion.tableName : String
+    get() = "localisations"
+
 
 @Serializable
 data class CategorieDto(
@@ -114,8 +128,11 @@ data class PostDto(
     @SerialName("nb_signalements")
     val nbSignalements: Int = 0,
     @SerialName("nb_likes")
-    val nbLikes: Int = 0
+    val nbLikes: Int = 0,
+
 )
+
+
 
 @Serializable
 data class PhotoDto(
@@ -124,7 +141,9 @@ data class PhotoDto(
     @SerialName("id_post")
     val idPost: Int,
     @SerialName("chemin")
-    val chemin: String
+    val chemin: String,
+
+    val tableName: String = "photos"
 )
 
 @Serializable
@@ -134,7 +153,8 @@ data class PostsCategorieDto(
     @SerialName("id_categorie")
     val idCategorie: Int,
     @SerialName("id_post")
-    val idPost: Int
+    val idPost: Int,
+    val tableName: String = "postscategories"
 )
 
 @Serializable
@@ -148,7 +168,9 @@ data class SignalementDto(
     @SerialName("date_signalement")
     val dateSignalement: String = LocalDateTime.now().toString(),
     @SerialName("raison")
-    val raison: String? = null
+    val raison: String? = null,
+
+    val tableName: String = "signalements"
 )
 
 @Serializable
@@ -158,8 +180,13 @@ data class PostLikeDto(
     @SerialName("id_utilisateur")
     val idUtilisateur: Int,
     @SerialName("id_post")
-    val idPost: Int
+    val idPost: Int,
+
+
 )
+
+val PostLikeDto.tableName: String
+    get() = "postslike"
 
 @Serializable
 data class CommentaireDto(
@@ -172,7 +199,9 @@ data class CommentaireDto(
     @SerialName("id_utilisateur")
     val idUtilisateur: Int,
     @SerialName("date_creation")
-    val dateCreation: String = LocalDateTime.now().toString()
+    val dateCreation: String = LocalDateTime.now().toString(),
+    val tableName: String = "commentaires"
+
 )
 
 @Serializable
@@ -192,7 +221,8 @@ data class DiscussionDto(
     @SerialName("id_post")
     val idPost: Int,
     @SerialName("id_admin")
-    val idAdmin: Int? = null
+    val idAdmin: Int? = null,
+    val tableName: String = "discussions"
 )
 
 @Serializable
@@ -204,7 +234,8 @@ data class DiscussionsParticipantDto(
     @SerialName("id_utilisateur")
     val idUtilisateur: Int,
     @SerialName("date_ajout")
-    val dateAjout: String = LocalDateTime.now().toString()
+    val dateAjout: String = LocalDateTime.now().toString(),
+    val tableName: String = "discussionsparticipants"
 )
 
 @Serializable
@@ -220,5 +251,6 @@ data class MessageDto(
     @SerialName("contenu")
     val contenu: String,
     @SerialName("medias")
-    val medias: String? = null
+    val medias: String? = null,
+    val tableName: String = "messages"
 )
