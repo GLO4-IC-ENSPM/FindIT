@@ -30,6 +30,7 @@ android {
         buildConfigField ("String", "SUPABASE_ANON_KEY", "\"${properties.getProperty("SUPABASE_ANON_KEY")}\"")
         buildConfigField("String", "SECRET", "\"${properties.getProperty("SECRET")}\"")
         buildConfigField("String", "SUPABASE_URL", "\"${properties.getProperty("SUPABASE_URL")}\"")
+        buildConfigField("String", "SECRET", "\"${properties.getProperty("SECRET")}\"")
     }
 
     buildTypes {
@@ -81,6 +82,8 @@ dependencies {
     implementation("androidx.hilt:hilt-navigation-compose:1.2.0")
     annotationProcessor("com.google.dagger:hilt-compiler:2.51.1")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
+
+    implementation("org.mindrot:jbcrypt:0.4")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
