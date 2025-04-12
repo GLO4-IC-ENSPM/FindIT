@@ -52,13 +52,10 @@ enum class PostStatut {
 data class Post(
     val idPost: Int? = null,
     val titre: String,
-    val description: String?,
     val dateHeure: LocalDateTime?,
     val type: PostType,
     val estAnonyme: Boolean,
-    val lieuDescription: String?,
     val idUtilisateur: Int?,
-    val idLocalisation: Int?,
     val datePublication: LocalDateTime,
     val statut: PostStatut,
     val nbSignalements: Int,

@@ -107,16 +107,12 @@ data class PostDto(
     val idPost: Int? = null,
     @SerialName("titre")
     val titre: String,
-    @SerialName("description")
-    val description: String? = null,
     @SerialName("date_heure")
     val dateHeure: String? = null,
     @SerialName("type")
-    val type: PostTypeDto,
+    val type: String,
     @SerialName("est_anonyme")
     val estAnonyme: Boolean = false,
-    @SerialName("lieu_description")
-    val lieuDescription: String? = null,
     @SerialName("id_utilisateur")
     val idUtilisateur: Int? = null,
     @SerialName("id_localisation")
@@ -124,7 +120,7 @@ data class PostDto(
     @SerialName("date_publication")
     val datePublication: String = LocalDateTime.now().toString(),
     @SerialName("statut")
-    val statut: PostStatutDto = PostStatutDto.OUVERT,
+    val statut: String = "OUVERT",
     @SerialName("nb_signalements")
     val nbSignalements: Int = 0,
     @SerialName("nb_likes")
@@ -132,6 +128,8 @@ data class PostDto(
 
 )
 
+val PostDto.Companion.tableName: String
+    get() = "posts"
 
 
 @Serializable
@@ -142,9 +140,10 @@ data class PhotoDto(
     val idPost: Int,
     @SerialName("chemin")
     val chemin: String,
-
     val tableName: String = "photos"
 )
+val PhotoDto.Companion.tableName: String
+    get() = "photos"
 
 @Serializable
 data class PostsCategorieDto(
@@ -185,8 +184,7 @@ data class PostLikeDto(
 
 )
 
-val PostLikeDto.tableName: String
-    get() = "postslike"
+
 
 @Serializable
 data class CommentaireDto(

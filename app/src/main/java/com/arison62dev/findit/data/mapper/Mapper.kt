@@ -58,20 +58,15 @@ fun CategorieDto.toDomain(): Categorie {
     )
 }
 
-fun PostTypeDto.toDomain(): PostType {
-    return when (this) {
-        PostTypeDto.TROUVE -> PostType.TROUVE
-        PostTypeDto.PERDU -> PostType.PERDU
-    }
-}
 
-fun PostStatutDto.toDomain(): PostStatut {
-    return when (this) {
-        PostStatutDto.OUVERT -> PostStatut.OUVERT
-        PostStatutDto.EN_COURS -> PostStatut.EN_COURS
-        PostStatutDto.RESTITUE -> PostStatut.RESTITUE
-        PostStatutDto.SIGNALE -> PostStatut.SIGNALE
-        PostStatutDto.ARCHIVE -> PostStatut.ARCHIVE
+fun String.toDomain(): PostStatut {
+    return when (this.uppercase()) {
+        "OUVERT" -> PostStatut.OUVERT
+        "EN_COURS" -> PostStatut.EN_COURS
+        "RESTITUE" -> PostStatut.RESTITUE
+        "SIGNALE" -> PostStatut.SIGNALE
+        "ARCHIVE" -> PostStatut.ARCHIVE
+        else -> PostStatut.OUVERT
     }
 }
 
@@ -82,17 +77,25 @@ fun PostDto.toDomain(): Post {
     return Post(
         idPost = this.idPost,
         titre = this.titre,
-        description = this.description,
         dateHeure = dateHeure,
-        type = this.type.toDomain(),
+        type = when(this.type){
+            "TROUVE" -> PostType.TROUVE
+            "PERDU" -> PostType.PERDU
+            else -> PostType.TROUVE
+        },
         estAnonyme = this.estAnonyme,
-        lieuDescription = this.lieuDescription,
         idUtilisateur = this.idUtilisateur,
-        idLocalisation = this.idLocalisation,
         datePublication = datePublication,
-        statut = this.statut.toDomain(),
+        statut = when(this.statut){
+            "Ouvert" -> PostStatut.OUVERT
+            "En cours" -> PostStatut.EN_COURS
+            "Restitue" -> PostStatut.RESTITUE
+            "Signale" -> PostStatut.SIGNALE
+            "Archive" -> PostStatut.ARCHIVE
+            else -> PostStatut.OUVERT
+        },
         nbSignalements = this.nbSignalements,
-        nbLikes = this.nbLikes
+        nbLikes = this.nbLikes,
     )
 }
 

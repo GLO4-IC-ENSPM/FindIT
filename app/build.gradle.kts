@@ -87,7 +87,11 @@ dependencies {
     annotationProcessor("com.google.dagger:hilt-compiler:2.51.1")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
 
+
     implementation("org.mindrot:jbcrypt:0.4")
+
+    implementation("io.coil-kt.coil3:coil-compose:3.1.0")
+    implementation("io.coil-kt.coil3:coil-network-okhttp:3.1.0")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

@@ -49,7 +49,7 @@ fun FindITNavGraph(
         }
 
         composable(Screen.CreatePostScreen.route) {
-            CreatePostScreen()
+            CreatePostScreen(navController = navController)
         }
 
         composable(Screen.NotificationsScreen.route) {
