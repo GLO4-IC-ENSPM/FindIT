@@ -2,6 +2,7 @@ package com.arison62dev.findit.presentation.navigation
 
 import EditProfileScreen
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -23,18 +24,23 @@ import com.arison62dev.findit.presentation.screen.SignUpScreen
 
 @Composable
 fun FindITNavGraph(
+    modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController()
-){
-    NavHost(navController = navController,  startDestination = Screen.SplashScreen.route ){
-       composable(Screen.SplashScreen.route) {
-        FindItSplashScreen(navController = navController)
-       }
+) {
+    NavHost(
+        modifier = modifier,
+        navController = navController,
+        startDestination = Screen.SplashScreen.route
+    ) {
+        composable(Screen.SplashScreen.route) {
+            FindItSplashScreen(navController = navController)
+        }
 
-       composable(Screen.LoginScreen.route){
-           LoginScreen(navController = navController, onLoginSuccess = {})
-       }
+        composable(Screen.LoginScreen.route) {
+            LoginScreen(navController = navController, onLoginSuccess = {})
+        }
 
-        composable(Screen.HomeScreen.route){
+        composable(Screen.HomeScreen.route) {
             HomeScreen()
         }
 
@@ -49,8 +55,7 @@ fun FindITNavGraph(
         composable(Screen.NotificationsScreen.route) {
             NotificationScreen()
         }
-        composable(Screen.PostDetailsScreen.route){
-            navBackStackEntry ->
+        composable(Screen.PostDetailsScreen.route) { navBackStackEntry ->
             val postId = navBackStackEntry.arguments?.getInt("postId")
             if (postId != null) {
                 PostDetailsScreen(postId = postId, navController)
@@ -77,15 +82,15 @@ fun FindITNavGraph(
             }
         }
 
-        composable(Screen.SettingsScreen.route){
+        composable(Screen.SettingsScreen.route) {
             SettingsScreen()
         }
 
-        composable(Screen.SignUpScreen.route){
+        composable(Screen.SignUpScreen.route) {
             SignUpScreen(navController = navController)
         }
 
-        composable(Screen.BookmarksScreen.route){
+        composable(Screen.BookmarksScreen.route) {
             BookmarksScreen()
         }
 

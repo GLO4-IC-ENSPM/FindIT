@@ -74,7 +74,6 @@ fun SignUpScreen(
             is SignUpState.Success -> {
                 isLoading = false
                 Toast.makeText(context, "Inscription réussie!", Toast.LENGTH_SHORT).show()
-                navController.popBackStack()
             }
 
             is SignUpState.Error -> {
