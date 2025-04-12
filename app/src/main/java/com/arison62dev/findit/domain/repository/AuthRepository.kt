@@ -80,9 +80,12 @@ class AuthRepositoryImpl @Inject constructor(
                         email = emailArg
                     }
 
-                    val insertedUser = postgrest.from(UtilisateurDto.tableName).insert(newUser)
+                    val insertedUser = postgrest.from(UtilisateurDto.tableName).insert(newUser){
+                        select()
+                    }.decodeSingleOrNull<UtilisateurDto>()
                     authDataStore.setLoggedIn(true)
-                    return@withContext Result.Success(insertedUser.decodeSingleOrNull<UtilisateurDto>())
+                    Log.d("AuthRepository@signUp", "data: $insertedUser")
+                    return@withContext Result.Success(insertedUser)
                 }
 
             } catch (e : java.lang.Exception) {

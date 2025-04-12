@@ -55,8 +55,7 @@ import com.arison62dev.findit.presentation.viewmodel.SignUpViewModel
 
 @Composable
 fun SignUpScreen(
-    navController: NavHostController,
-    viewModel: SignUpViewModel = hiltViewModel()
+    navController: NavHostController, viewModel: SignUpViewModel = hiltViewModel()
 ) {
     var fullName by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
@@ -77,21 +76,23 @@ fun SignUpScreen(
                 Toast.makeText(context, "Inscription réussie!", Toast.LENGTH_SHORT).show()
                 navController.popBackStack()
             }
+
             is SignUpState.Error -> {
                 isLoading = false
                 val error = (signUpState as SignUpState.Error).message
                 Toast.makeText(context, error, Toast.LENGTH_SHORT).show()
             }
+
             is SignUpState.Loading -> {
                 isLoading = true
             }
+
             else -> {}
         }
     }
 
     Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
+        modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
     ) {
         Column(
             modifier = Modifier
@@ -120,8 +121,7 @@ fun SignUpScreen(
             Spacer(modifier = Modifier.height(32.dp))
 
             // Champ nom complet
-            OutlinedTextField(
-                value = fullName,
+            OutlinedTextField(value = fullName,
                 onValueChange = { fullName = it },
                 label = { Text("Nom complet") },
                 modifier = Modifier.fillMaxWidth(),
@@ -141,14 +141,12 @@ fun SignUpScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             // Champ email
-            OutlinedTextField(
-                value = email,
+            OutlinedTextField(value = email,
                 onValueChange = { email = it },
                 label = { Text("Email") },
                 modifier = Modifier.fillMaxWidth(),
                 keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Email,
-                    imeAction = ImeAction.Next
+                    keyboardType = KeyboardType.Email, imeAction = ImeAction.Next
                 ),
                 singleLine = true,
                 isError = email.isNotBlank() && !email.isValidEmail()
@@ -166,15 +164,13 @@ fun SignUpScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             // Champ mot de passe
-            OutlinedTextField(
-                value = password,
+            OutlinedTextField(value = password,
                 onValueChange = { password = it },
                 label = { Text("Mot de passe") },
                 modifier = Modifier.fillMaxWidth(),
                 visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                 keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Password,
-                    imeAction = ImeAction.Next
+                    keyboardType = KeyboardType.Password, imeAction = ImeAction.Next
                 ),
                 trailingIcon = {
                     IconButton(onClick = { passwordVisible = !passwordVisible }) {
@@ -199,15 +195,13 @@ fun SignUpScreen(
             Spacer(modifier = Modifier.height(16.dp))
 
             // Champ confirmation mot de passe
-            OutlinedTextField(
-                value = confirmPassword,
+            OutlinedTextField(value = confirmPassword,
                 onValueChange = { confirmPassword = it },
                 label = { Text("Confirmer le mot de passe") },
                 modifier = Modifier.fillMaxWidth(),
                 visualTransformation = if (confirmPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
                 keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Password,
-                    imeAction = ImeAction.Done
+                    keyboardType = KeyboardType.Password, imeAction = ImeAction.Done
                 ),
                 trailingIcon = {
                     IconButton(onClick = { confirmPasswordVisible = !confirmPasswordVisible }) {
@@ -235,7 +229,7 @@ fun SignUpScreen(
             Button(
                 onClick = {
                     if (validateInputs(fullName, email, password, confirmPassword)) {
-//                        viewModel.signUp(fullName, email, password)
+                        viewModel.signUp(fullName, email, password)
                     }
                 },
                 modifier = Modifier
@@ -257,23 +251,21 @@ fun SignUpScreen(
             Spacer(modifier = Modifier.height(24.dp))
 
             // Lien vers la connexion
-            Text(
-                text = buildAnnotatedString {
-                    append("Vous avez déjà un compte ? ")
-                    withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary)) {
-                        append("Se connecter")
-                    }
-                },
-                modifier = Modifier.align(Alignment.CenterHorizontally)
-                    .clickable {
-                        navController.navigate(Screen.LoginScreen.route){
-                            popUpTo(Screen.LoginScreen.route){
-                                inclusive = true
+            Text(text = buildAnnotatedString {
+                append("Vous avez déjà un compte ? ")
+                withStyle(style = SpanStyle(color = MaterialTheme.colorScheme.primary)) {
+                    append("Se connecter")
+                }
+            }, modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .clickable {
+                    navController.navigate(Screen.LoginScreen.route) {
+                        popUpTo(Screen.LoginScreen.route) {
+                            inclusive = true
 
-                            }
                         }
                     }
-            )
+                })
         }
     }
 }
@@ -284,16 +276,13 @@ private fun validateInputs(
     password: String,
     confirmPassword: String,
 ): Boolean {
-    return fullName.length >= 3 &&
-            email.isValidEmail() &&
-            password.length >= 8 &&
-            password == confirmPassword
+    return fullName.length >= 3 && email.isValidEmail() && password.length >= 8 && password == confirmPassword
 }
 
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun PreviewSignUpScreen(){
+fun PreviewSignUpScreen() {
     SignUpScreen(navController = rememberNavController())
 
 }

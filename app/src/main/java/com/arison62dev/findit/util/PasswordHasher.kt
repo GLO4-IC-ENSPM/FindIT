@@ -13,7 +13,7 @@ object PasswordHasher {
      */
     fun hash(password: String): String {
         // Génère un "salt" aléatoire et hashe le mot de passe
-        return BCrypt.hashpw(password,  BuildConfig.SECRET)
+        return BCrypt.hashpw(password,  BCrypt.gensalt())
     }
 
     /**
