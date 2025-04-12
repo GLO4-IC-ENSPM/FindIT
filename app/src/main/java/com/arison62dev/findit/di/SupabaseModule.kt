@@ -31,7 +31,7 @@ object SupabaseModule {
             install(Auth){
                 flowType = FlowType.PKCE
                 scheme = "app"
-                host = "findit.com"
+                host = "supabase.com"
             }
             install(Storage)
         }

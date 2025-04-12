@@ -67,6 +67,10 @@ android {
 dependencies {
     implementation(libs.androidx.datastore.core.android)
     implementation("androidx.datastore:datastore-preferences:1.1.4")
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.media3.common.ktx)
     var supabase_version = "3.1.4"
     var ktor_version = "3.0.0"
     // Supabase setup

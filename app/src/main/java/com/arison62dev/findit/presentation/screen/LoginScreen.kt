@@ -70,6 +70,11 @@ fun LoginScreen(
         when (loginState) {
             is LoginState.Success -> {
                 isLoading = false
+                navController.navigate(Screen.HomeScreen.route){
+                    popUpTo(Screen.HomeScreen.route){
+                        inclusive = true
+                    }
+                }
                 onLoginSuccess()
             }
             is LoginState.Error -> {

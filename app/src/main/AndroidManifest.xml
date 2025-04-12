@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".FindITApplication"
         android:allowBackup="true"
@@ -14,6 +16,20 @@
         android:theme="@style/Theme.FindIT"
         tools:targetApi="31">
         <activity
+            android:name=".DeepLinkHandlerActivity"
+            android:exported="true"
+            android:theme="@style/Theme.FindIT"
+            >
+            <intent-filter android:autoVerify = "true">
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="supabase.com"
+                    android:scheme="app" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
@@ -22,10 +38,8 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-
             </intent-filter>
         </activity>
-
     </application>
-    <uses-permission android:name="android.permission.INTERNET" />
- </manifest>
+
+</manifest>

@@ -39,6 +39,7 @@ class LoginViewModel @Inject constructor(
                         if (user != null) {
                             authDataStore.setLoggedIn(true)
                             user.idUtilisateur?.let { authDataStore.setUserId(it) }
+                            _loginState.value = LoginState.Success
                         } else {
                             _loginState.value = LoginState.Error("Authentification echoue")
                         }
@@ -51,7 +52,6 @@ class LoginViewModel @Inject constructor(
                 Log.d("LoginViewModel", "login: ${e.message}")
                 _loginState.value = LoginState.Error(e.message ?: "Erreur de connexion")
             }
-            Log.d("LoginViewModel", "login: ${_loginState.value}")
         }
     }
 
