@@ -121,4 +121,5 @@ class CreatePostViewModel @Inject constructor(
         errorMessage.value = null
         isSuccess.value = false
     }
+
 }

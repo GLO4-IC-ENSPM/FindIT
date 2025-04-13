@@ -10,6 +10,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -63,14 +64,14 @@ fun FindITTopAppBar(
     }
 
     val screenTitle = title ?: when (currentScreen) {
-        Screen.HomeScreen -> "Home"
-        Screen.CreatePostScreen -> "Create Post"
+        Screen.HomeScreen -> "Acceuil"
+        Screen.CreatePostScreen -> "Nouveau Post"
         Screen.EditProfileScreen -> "Edit Profile"
         Screen.PostDetailsScreen -> "Post Details"
         Screen.SettingsScreen -> "Settings"
         Screen.NotificationsScreen -> "Notifications"
-        Screen.SearchScreen -> "Search"
-        Screen.BookmarksScreen -> "Bookmarks"
+        Screen.SearchScreen -> "Recherches"
+        Screen.BookmarksScreen -> "Enregistrements"
         else -> currentScreen.route.split('_').joinToString(" ") { it.replaceFirstChar {
             if (it.isLowerCase()) it.titlecase(
                 Locale.getDefault()
@@ -78,7 +79,7 @@ fun FindITTopAppBar(
         } }
     }
 
-    LargeTopAppBar(
+    TopAppBar(
         modifier = modifier,
         title = { Text(text = screenTitle, style = MaterialTheme.typography.headlineSmall) },
         navigationIcon = navigationIcon,

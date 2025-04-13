@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">FindIT</string>
-    <string name="app_motto">Aider ceux qui cherchent\net trouver ce que vous cherchez</string>>
+    <string name="app_motto">Aider ceux qui cherchent\net trouver ce que vous cherchez</string>
+    <string name="search">Search</string>
+    <string name="back">Retour</string>
+    <string name="search_posts">Recherche...</string>
+    <string name="clear">Clear search</string>
+    <string name="type_to_search">La saisie doit avoir au moins 3 caractere</string>
+    <string name="no_results_found">Pas de resultats</string>
+    <string name="unknown_error">Unknown error occurred</string>
 </resources>

@@ -17,6 +17,7 @@ import com.arison62dev.findit.util.PasswordHasher.hash
 interface AuthRepository {
     suspend fun login(email: String, password: String): Result<UtilisateurDto?>
     suspend fun signUp(fullName: String, email: String, password: String): Result<UtilisateurDto?>
+    suspend fun getUserById(id: Int): Result<UtilisateurDto>
 }
 
 class AuthRepositoryImpl @Inject constructor(
@@ -94,6 +95,24 @@ class AuthRepositoryImpl @Inject constructor(
             }
         }
 
+    }
+
+    override suspend fun getUserById(id: Int): Result<UtilisateurDto> = withContext(Dispatchers.IO){
+        try {
+            val user = postgrest.from(UtilisateurDto.tableName).select {
+                filter {
+                    eq("id_utilisateur", id)
+                }
+            }.decodeSingleOrNull<UtilisateurDto>()
+            if (user != null) {
+                return@withContext Result.Success(user)
+            } else {
+                return@withContext Result.Error(Exception("User not found"))
+            }
+        } catch (e: java.lang.Exception){
+            Log.d("AuthRepository@getUserById", "$e")
+            return@withContext Result.Error(e)
+        }
     }
 
 }

@@ -38,9 +38,11 @@ fun FindITBottomAppBar(
                 alwaysShowLabel = false,
                 selected = currentRoute == Screen.HomeScreen.route,
                 onClick = { navController.navigate(Screen.HomeScreen.route){
+                    launchSingleTop = true
                     popUpTo(Screen.HomeScreen.route){
-                        inclusive = true
+                        saveState = true
                     }
+                    restoreState = true
                 } },
                 icon = {
                     Icon(
@@ -60,7 +62,11 @@ fun FindITBottomAppBar(
                 alwaysShowLabel = false,
                 selected = currentRoute == Screen.SearchScreen.route,
                 onClick = { navController.navigate(Screen.SearchScreen.route){
-                    popUpTo(Screen.HomeScreen.route)
+                    launchSingleTop = true
+                    popUpTo(Screen.HomeScreen.route){
+                        saveState = true
+                    }
+                    restoreState = true
                 } },
                 icon = {
                     Icon(
@@ -80,7 +86,11 @@ fun FindITBottomAppBar(
                 alwaysShowLabel = false,
                 selected = currentRoute == Screen.BookmarksScreen.route,
                 onClick = { navController.navigate(Screen.BookmarksScreen.route){
-                    popUpTo(Screen.HomeScreen.route)
+                    launchSingleTop = true
+                    popUpTo(Screen.HomeScreen.route){
+                        saveState = true
+                    }
+                    restoreState = true
                 } },
                 icon = {
                     Icon(
@@ -100,7 +110,11 @@ fun FindITBottomAppBar(
                 alwaysShowLabel = false,
                 selected = currentRoute == Screen.ProfileScreen.route,
                 onClick = { navController.navigate(Screen.ProfileScreen.route){
-                    popUpTo(Screen.HomeScreen.route)
+                    launchSingleTop = true
+                    popUpTo(Screen.HomeScreen.route){
+                        saveState = true
+                    }
+                    restoreState = true
                 } },
                 icon = {
                     Icon(

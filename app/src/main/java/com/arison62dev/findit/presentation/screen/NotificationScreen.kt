@@ -15,6 +15,6 @@ fun NotificationScreen(){
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ){
-        Text(text = "Notification Screen")
+        Text(text = "Aucune notification pour le moment")
     }
 }

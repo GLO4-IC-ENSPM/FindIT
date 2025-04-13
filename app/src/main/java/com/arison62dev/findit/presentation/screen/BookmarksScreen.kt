@@ -15,6 +15,6 @@ fun BookmarksScreen(){
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ){
-        Text(text = "Bookmark Screen")
+        Text(text = "Aucun enregistrement trouvé")
     }
 }
