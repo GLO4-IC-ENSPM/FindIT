@@ -47,3 +47,5 @@ Ouvrez le projet avec **Android Studio**, synchronisez les dépendances, puis la
 
 Merci pour votre intérêt pour **FindIT** ✨
 
+![Presentation interface ](FindIT.png)
+
